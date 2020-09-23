@@ -1,24 +1,22 @@
 const template = [
   {
     el: 'div',
-    className: 'wrapper',
+    classNames: 'wrapper',
     child: null,
-    parent: document.body
+    parent: 'body'
   },
   {
     el: 'div',
-    className: 'display',
+    classNames: 'display',
     child: null,
-    parent: document.querySelector('.wrapper')
+    parent: 'wrapper'
   },
   {
     el: 'input',
-    className: 'display__input',
+    classNames: 'display__input',
     child: null,
-    parent: document.querySelector('.display'),
-    attr0: ['type', 'text'], 
-    attr1: ['value', '0'], 
-    attr2: ['disabled', '']
+    parent: 'display',
+    dataAttr: [['type', 'text'], ['value', '0'], ['disabled', '']]
   }
 ];
 
