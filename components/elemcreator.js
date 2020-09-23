@@ -7,6 +7,7 @@
 
 const creator = (args) => {
   let element = null;
+  let kid = null;
 
   try {
     element = document.createElement(args.el);
@@ -22,12 +23,27 @@ const creator = (args) => {
     element.innerText = `${args.text}`;
   }
 
-  if (args.child && Array.isArray(child)) {
-    args.child.forEach((el) => el && element.appendChild(args.el));
-  } else if (args.child && typeof args.child === 'object') {
-    element.appendChild(args.child);
-  } else if (args.child && typeof args.child === 'string') {
-    element.innerHTML = args.child;
+  // if (args.child && Array.isArray(child)) {
+  //   args.child.forEach((el) => el && element.appendChild(args.el));
+  // } else if (args.child && typeof args.child === 'object') {
+  //   element.appendChild(args.child);
+  // } else if (args.child && typeof args.child === 'string') {
+  //   element.innerHTML = args.child;
+  // }
+
+  if (args.child !== null && args.child !== undefined) {
+    args.child.forEach(el => {
+      kid = document.createElement(el.el);
+
+      if (el.classNames) {
+        kid.classList.add(...el.classNames.split(' '));
+      }
+
+      if (el.text !== undefined) {
+        kid.innerText = `${el.text}`;
+      }
+      element.appendChild(kid);
+    })
   }
 
   if (args.parent) {
