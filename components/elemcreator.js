@@ -1,5 +1,6 @@
 // {String} el
 // {String} classNames
+// {String} text
 // {HTMLElement} child
 // {HTMLElement} parent
 // {...array} dataAttr
@@ -15,6 +16,10 @@ const creator = (args) => {
 
   if (args.classNames) {
     element.classList.add(...args.classNames.split(' '));
+  }
+  
+  if (args.text !== undefined) {
+    element.innerText = `${args.text}`;
   }
 
   if (args.child && Array.isArray(child)) {
