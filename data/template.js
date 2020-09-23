@@ -23,6 +23,18 @@ const template = [
   {
     el: 'div',
     classNames: 'buttons__row',
+    child: [
+      {
+        el: 'button',
+        classNames: 'buttons__item',
+        text: 'test'
+      },
+      {
+        el: 'button',
+        classNames: 'buttons__item',
+        text: 'test2'
+      }
+    ],
     parent: 'buttons'
   },
   {
