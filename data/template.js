@@ -27,12 +27,22 @@ const template = [
       {
         el: 'button',
         classNames: 'buttons__item',
-        text: 'test'
+        text: 'AC'
       },
       {
         el: 'button',
         classNames: 'buttons__item',
-        text: 'test2'
+        text: 'k'
+      },
+      {
+        el: 'button',
+        classNames: 'buttons__item',
+        text: 'k'
+      },
+      {
+        el: 'button',
+        classNames: 'buttons__item',
+        text: '÷'
       }
     ],
     parent: 'buttons'
@@ -40,27 +50,106 @@ const template = [
   {
     el: 'div',
     classNames: 'buttons__row',
-    child: null,
+    child: [
+      {
+        el: 'button',
+        classNames: 'buttons__item',
+        text: '7'
+      },
+      {
+        el: 'button',
+        classNames: 'buttons__item',
+        text: '8'
+      },
+      {
+        el: 'button',
+        classNames: 'buttons__item',
+        text: '9'
+      },
+      {
+        el: 'button',
+        classNames: 'buttons__item',
+        text: 'x'
+      }
+    ],
     parent: 'buttons'
   },
   {
     el: 'div',
     classNames: 'buttons__row',
-    child: null,
+    child: [
+      {
+        el: 'button',
+        classNames: 'buttons__item',
+        text: '4'
+      },
+      {
+        el: 'button',
+        classNames: 'buttons__item',
+        text: '5'
+      },
+      {
+        el: 'button',
+        classNames: 'buttons__item',
+        text: '6'
+      },
+      {
+        el: 'button',
+        classNames: 'buttons__item',
+        text: '-'
+      }
+    ],
     parent: 'buttons'
   },
   {
     el: 'div',
     classNames: 'buttons__row',
-    child: null,
+    child: [
+      {
+        el: 'button',
+        classNames: 'buttons__item',
+        text: '1'
+      },
+      {
+        el: 'button',
+        classNames: 'buttons__item',
+        text: '2'
+      },
+      {
+        el: 'button',
+        classNames: 'buttons__item',
+        text: '3'
+      },
+      {
+        el: 'button',
+        classNames: 'buttons__item',
+        text: '+'
+      }
+    ],
     parent: 'buttons'
   },
   {
     el: 'div',
     classNames: 'buttons__row',
-    child: null,
+    child: [
+      {
+        el: 'button',
+        classNames: 'buttons__item',
+        text: '0'
+      },
+      {
+        el: 'button',
+        classNames: 'buttons__item',
+        text: '.'
+      },
+      {
+        el: 'button',
+        classNames: 'buttons__item',
+        text: '='
+      }
+    ],
     parent: 'buttons'
-  },
+  }
 ];
 
 export default template;
