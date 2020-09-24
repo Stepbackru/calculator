@@ -26,23 +26,25 @@ const template = [
     child: [
       {
         el: 'button',
-        classNames: 'buttons__item',
-        text: 'AC'
+        classNames: 'buttons__item buttons__item-grey',
+        text: 'AC',
+        dataAttr: [['operation', 'clear']]
       },
       {
         el: 'button',
-        classNames: 'buttons__item',
+        classNames: 'buttons__item buttons__item-grey',
         text: 'k'
       },
       {
         el: 'button',
-        classNames: 'buttons__item',
+        classNames: 'buttons__item buttons__item-grey',
         text: 'k'
       },
       {
         el: 'button',
-        classNames: 'buttons__item',
-        text: '÷'
+        classNames: 'buttons__item buttons__item-orange',
+        text: '÷',
+        dataAttr: [['operation', '/']]
       }
     ],
     parent: 'buttons'
@@ -54,22 +56,26 @@ const template = [
       {
         el: 'button',
         classNames: 'buttons__item',
-        text: '7'
+        text: '7',
+        dataAttr: [['number', '7']]
       },
       {
         el: 'button',
         classNames: 'buttons__item',
-        text: '8'
+        text: '8',
+        dataAttr: [['number', '8']]
       },
       {
         el: 'button',
         classNames: 'buttons__item',
-        text: '9'
+        text: '9',
+        dataAttr: [['number', '9']]
       },
       {
         el: 'button',
-        classNames: 'buttons__item',
-        text: 'x'
+        classNames: 'buttons__item buttons__item-orange',
+        text: 'x',
+        dataAttr: [['operation', '*']]
       }
     ],
     parent: 'buttons'
@@ -81,22 +87,26 @@ const template = [
       {
         el: 'button',
         classNames: 'buttons__item',
-        text: '4'
+        text: '4',
+        dataAttr: [['number', '4']]
       },
       {
         el: 'button',
         classNames: 'buttons__item',
-        text: '5'
+        text: '5',
+        dataAttr: [['number', '5']]
       },
       {
         el: 'button',
         classNames: 'buttons__item',
-        text: '6'
+        text: '6',
+        dataAttr: [['number', '6']]
       },
       {
         el: 'button',
-        classNames: 'buttons__item',
-        text: '-'
+        classNames: 'buttons__item buttons__item-orange',
+        text: '-',
+        dataAttr: [['operation', '-']]
       }
     ],
     parent: 'buttons'
@@ -108,22 +118,26 @@ const template = [
       {
         el: 'button',
         classNames: 'buttons__item',
-        text: '1'
+        text: '1',
+        dataAttr: [['number', '1']]
       },
       {
         el: 'button',
         classNames: 'buttons__item',
-        text: '2'
+        text: '2',
+        dataAttr: [['number', '2']]
       },
       {
         el: 'button',
         classNames: 'buttons__item',
-        text: '3'
+        text: '3',
+        dataAttr: [['number', '3']]
       },
       {
         el: 'button',
-        classNames: 'buttons__item',
-        text: '+'
+        classNames: 'buttons__item buttons__item-orange',
+        text: '+',
+        dataAttr: [['operation', '+']]
       }
     ],
     parent: 'buttons'
@@ -134,18 +148,21 @@ const template = [
     child: [
       {
         el: 'button',
-        classNames: 'buttons__item',
-        text: '0'
+        classNames: 'buttons__item buttons__item-zero',
+        text: '0',
+        dataAttr: [['number', '0']]
       },
       {
         el: 'button',
         classNames: 'buttons__item',
-        text: '.'
+        text: '.',
+        dataAttr: [['number', '.']]
       },
       {
         el: 'button',
-        classNames: 'buttons__item',
-        text: '='
+        classNames: 'buttons__item buttons__item-orange',
+        text: '=',
+        dataAttr: [['operation', 'answer']]
       }
     ],
     parent: 'buttons'
