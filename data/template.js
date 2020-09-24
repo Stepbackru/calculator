@@ -13,7 +13,7 @@ const template = [
     el: 'input',
     classNames: 'display__input',
     parent: 'display',
-    dataAttr: [['type', 'text'], ['value', '0'], ['disabled', '']]
+    dataAttr: [['type', 'text'], ['placeholder', '0'], ['disabled', '']]
   },
   {
     el: 'div',
@@ -28,7 +28,7 @@ const template = [
         el: 'button',
         classNames: 'buttons__item buttons__item-grey',
         text: 'AC',
-        dataAttr: [['operation', 'clear']]
+        dataAttr: [['action', 'clear']]
       },
       {
         el: 'button',
@@ -162,7 +162,7 @@ const template = [
         el: 'button',
         classNames: 'buttons__item buttons__item-orange',
         text: '=',
-        dataAttr: [['operation', 'answer']]
+        dataAttr: [['action', 'answer']]
       }
     ],
     parent: 'buttons'
