@@ -42,6 +42,21 @@ const render = (args) => {
       if (el.text !== undefined) {
         kid.innerText = `${el.text}`;
       }
+
+      if (el.dataAttr !== undefined) {
+        el.dataAttr.forEach(([attrName, attrValue]) => {
+          if (attrValue === '') {
+            kid.setAttribute(attrName, '');
+          }
+    
+          if (attrName.match(/value|id|placeholder|type/)) {
+            kid.setAttribute(attrName, attrValue);
+          } else if (attrValue !== '') {
+            kid.dataset[attrName] = attrValue;
+          }
+        })
+      }
+
       element.appendChild(kid);
     })
   }
