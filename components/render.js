@@ -5,7 +5,7 @@
 // {HTMLElement} parent
 // {...array} dataAttr
 
-const creator = (args) => {
+const render = (args) => {
   let element = null;
   let kid = null;
 
@@ -70,4 +70,4 @@ const creator = (args) => {
   return element;
 }
 
-export default creator;
+export default render;

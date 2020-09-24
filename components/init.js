@@ -1,4 +1,4 @@
-import creator from './elemcreator.js';
+import render from './render.js';
 import template from '../data/template.js'
 
 const init = () => {
@@ -6,7 +6,7 @@ const init = () => {
 }
 
 const initTemplate = () => {
-  template.forEach(el => creator(el));
+  template.forEach(el => render(el));
 }
 
 export default init;
