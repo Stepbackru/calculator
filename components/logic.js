@@ -31,6 +31,7 @@ const logic = () => {
       if (item.getAttribute('data-action') === 'clear') {
         valueMemory = null;
         output.value = '';
+        operationMemory = '';
       }
       if (item.getAttribute('data-action') === 'answer') {
         if (valueMemory !== null) {
