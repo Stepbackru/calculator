@@ -61,26 +61,39 @@ const logic = () => {
         operationMemory = '';
         output.value = '0';
       }
+      
       if (item.getAttribute('data-action') === 'answer') {
         if (valueMemory !== null) {
           value2 = Number(output.value);
-          if (operationMemory === '+') {
-            output.value = parseFloat(valueMemory + value2);
-          }
-          if (operationMemory === '-') {
-            output.value = parseFloat(valueMemory - value2);
-          }
-          if (operationMemory === '/') {
-            output.value = parseFloat(valueMemory / value2);
-          }
-          if (operationMemory === '*') {
-            output.value = parseFloat(valueMemory * value2);
-          }
+          accurateCalc(operationMemory, valueMemory, value2, output);
+          // if (operationMemory === '+') {
+          //   // output.value = parseFloat(valueMemory + value2);
+          // }
+          // if (operationMemory === '-') {
+          //   output.value = parseFloat(valueMemory - value2);
+          // }
+          // if (operationMemory === '/') {
+          //   output.value = parseFloat(valueMemory / value2);
+          // }
+          // if (operationMemory === '*') {
+          //   // output.value = parseFloat(valueMemory * value2);
+          // }
           
         }
       }
     }
   });
 }
+
+const accurateCalc = (operation, val1, val2, output) => {
+  let n = {
+          '+': val1 + val2,
+          '-': val1 - val2,
+          '/': val1 / val2,
+          '*': val1 * val2
+      }[operation];        
+
+  return output.value = Math.round(n * 100) / 100;
+};
 
 export default logic;
