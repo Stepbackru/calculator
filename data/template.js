@@ -13,7 +13,7 @@ const template = [
     el: 'input',
     classNames: 'display__input',
     parent: 'display',
-    dataAttr: [['type', 'text'], ['placeholder', '0'], ['disabled', '']]
+    dataAttr: [['type', 'text'], ['value', '0'], ['disabled', '']]
   },
   {
     el: 'div',
