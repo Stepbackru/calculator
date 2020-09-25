@@ -4,7 +4,8 @@ const logic = () => {
   let newValue = false;
   let value2 = null;
   let operationMemory = '';
-  let decimalFlag = false;
+  let minusFlag = false;
+
 
   document.querySelector('.wrapper').addEventListener('click', (e) => {
     const item = e.target;
@@ -14,6 +15,10 @@ const logic = () => {
         if (newValue) {
           output.value = item.getAttribute('data-number');
           newValue = false;
+          // if (minusFlag) {
+          //   output.value += item.getAttribute('data-number');
+          //   minusFlag = false;
+          // }
         } else {
           if (output.value === '0') {
             output.value = item.getAttribute('data-number');
@@ -30,15 +35,22 @@ const logic = () => {
       if (decimalMemory === '.') {
         decimalMemory = '0.';
         newValue = false;
-        decimalFlag = true;
       }
 
       output.value = decimalMemory;
     }
 
     if (item.hasAttribute('data-operation')) {
+      if (item.getAttribute('data-operation') === '-') {
+        if (output.value === '0') {
+          output.value = '-';
+          minusFlag = true;
+        }
+      }
       valueMemory = Number(output.value);
-      newValue = true;
+      if (output.value !== '-') {
+        newValue = true;
+      }
       operationMemory = item.getAttribute('data-operation');
     }
 
