@@ -9,17 +9,12 @@ const logic = () => {
     
     if (item.hasAttribute('data-number')) {
       if (output.value.length < 13) {
-        output.value += item.getAttribute('data-number');
-        if (valueMemory !== null) {
+        if (output.value === '0') {
           output.value = item.getAttribute('data-number');
+        } else {
+          output.value += item.getAttribute('data-number');
         }
       }
-    }
-    
-    if (output.value === '.' && valueMemory === null) {
-      let addZero = output.value.split('');
-      addZero.unshift('0');
-      output.value = addZero.join('');
     }
 
     if (item.hasAttribute('data-operation')) {
