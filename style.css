@@ -19,7 +19,7 @@ button:hover {
 .wrapper {
   width: 432px;
   min-height: 50px;
-  margin: 40px auto;
+  margin: 0 auto;
   background: #000;
   border-radius: 2em;
 }
@@ -41,9 +41,6 @@ button:hover {
   border: 0;
   outline: 0;
 }
-.display__input::placeholder {
-  color: #fff;
-}
 .buttons__item {
   width: 5em;
   height: 5em;
@@ -58,19 +55,20 @@ button:hover {
   font-size: 1.28em;
 }
 .buttons__item:hover {
-  
   background: #696868;
 }
 .buttons__item-grey {
   background: #b5b5b5;
   color: #000;
 }
+.buttons__item_active-grey,
 .buttons__item-grey:hover {
   background: #d4d4d4;
 }
 .buttons__item-orange {
   background: #fe9d12;
 }
+.buttons__item_active-orange,
 .buttons__item-orange:hover {
   background: #fff;
   color: #fe9d12;
