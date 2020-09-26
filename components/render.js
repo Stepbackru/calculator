@@ -23,14 +23,6 @@ const render = (args) => {
     element.innerText = `${args.text}`;
   }
 
-  // if (args.child && Array.isArray(child)) {
-  //   args.child.forEach((el) => el && element.appendChild(args.el));
-  // } else if (args.child && typeof args.child === 'object') {
-  //   element.appendChild(args.child);
-  // } else if (args.child && typeof args.child === 'string') {
-  //   element.innerHTML = args.child;
-  // }
-
   if (args.child !== null && args.child !== undefined) {
     args.child.forEach(el => {
       kid = document.createElement(el.el);
