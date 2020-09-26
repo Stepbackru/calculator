@@ -26,28 +26,36 @@ const template = [
     child: [
       {
         el: 'button',
-        classNames: 'buttons__item buttons__item-grey',
+        classNames: 'buttons__item buttons__item-grey buttons__item-ac',
         text: 'AC',
         dataAttr: [['action', 'clear']]
       },
       {
         el: 'button',
-        classNames: 'buttons__item buttons__item-grey',
-        text: 'k'
+        classNames: 'buttons__item buttons__item-grey operation',
+        text: '√',
+        dataAttr: [['operation', 'sqrt']]
       },
       {
         el: 'button',
-        classNames: 'buttons__item buttons__item-grey',
-        text: 'k'
+        classNames: 'buttons__item buttons__item-grey buttons__item-x operation',
+        text: 'x',
+        dataAttr: [['operation', 'pow']]
       },
       {
         el: 'button',
-        classNames: 'buttons__item buttons__item-orange',
+        classNames: 'buttons__item buttons__item-orange operation',
         text: '÷',
         dataAttr: [['operation', '/']]
       }
     ],
     parent: 'buttons'
+  },
+  {
+    el: 'sup',
+    classNames: '',
+    parent: 'buttons__item-x',
+    text: 'y'
   },
   {
     el: 'div',
@@ -73,7 +81,7 @@ const template = [
       },
       {
         el: 'button',
-        classNames: 'buttons__item buttons__item-orange',
+        classNames: 'buttons__item buttons__item-orange operation',
         text: 'x',
         dataAttr: [['operation', '*']]
       }
@@ -104,7 +112,7 @@ const template = [
       },
       {
         el: 'button',
-        classNames: 'buttons__item buttons__item-orange',
+        classNames: 'buttons__item buttons__item-orange operation',
         text: '-',
         dataAttr: [['operation', '-']]
       }
@@ -135,7 +143,7 @@ const template = [
       },
       {
         el: 'button',
-        classNames: 'buttons__item buttons__item-orange',
+        classNames: 'buttons__item buttons__item-orange operation',
         text: '+',
         dataAttr: [['operation', '+']]
       }
