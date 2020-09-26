@@ -1,10 +1,12 @@
 const logic = () => {
   const output = document.querySelector('.display__input');
+  const operations = [...document.querySelectorAll('.operation')];
+  const buttonAc = document.querySelector('.buttons__item-ac');
   let valueMemory = null;
   let newValue = false;
   let value2 = null;
   let operationMemory = '';
-  let minusFlag = false;
+  let cleanMemory = false;
 
 
   document.querySelector('.wrapper').addEventListener('click', (e) => {
@@ -15,13 +17,18 @@ const logic = () => {
         if (newValue) {
           output.value = item.getAttribute('data-number');
           newValue = false;
-          // if (minusFlag) {
-          //   output.value += item.getAttribute('data-number');
-          //   minusFlag = false;
-          // }
+
+          operations.forEach(el => {
+            el.classList.remove('buttons__item_active-orange');
+            el.classList.remove('buttons__item_active-grey');
+          });
         } else {
           if (output.value === '0') {
             output.value = item.getAttribute('data-number');
+
+            buttonAc.setAttribute('data-action', 'partClear');
+            buttonAc.innerText = 'C';
+            cleanMemory = false;
           } else {
             output.value += item.getAttribute('data-number');
           }
@@ -44,9 +51,23 @@ const logic = () => {
       if (item.getAttribute('data-operation') === '-') {
         if (output.value === '0') {
           output.value = '-';
-          minusFlag = true;
         }
       }
+      
+      operations.forEach(el => {
+        el.classList.remove('buttons__item_active-orange');
+        el.classList.remove('buttons__item_active-grey');
+      });
+
+      const grey = item.classList.contains('buttons__item-grey');
+      const orange = item.classList.contains('buttons__item-orange');
+
+      if (grey && item.getAttribute('data-operation') !== 'sqrt') {
+        item.classList.add('buttons__item_active-grey');
+      } else if (orange) {
+        item.classList.add('buttons__item_active-orange');
+      }
+
       valueMemory = Number(output.value);
       if (output.value !== '-') {
         newValue = true;
@@ -54,31 +75,41 @@ const logic = () => {
       operationMemory = item.getAttribute('data-operation');
     }
 
+    if (operationMemory === 'sqrt') {
+      output.value = Math.sqrt(valueMemory).toFixed(9);
+    }
+
     if (item.hasAttribute('data-action')) {
+      if (item.getAttribute('data-action') === 'partClear') {
+        if (valueMemory !== null) {
+          output.value = '0';
+        }
+        buttonAc.innerText = 'AC';
+        buttonAc.setAttribute('data-action', 'clear');
+        cleanMemory = true;
+      }
+
       if (item.getAttribute('data-action') === 'clear') {
-        valueMemory = null;
-        newValue = false;
-        operationMemory = '';
-        output.value = '0';
+        if (!cleanMemory) {
+          valueMemory = null;
+          newValue = false;
+          operationMemory = '';
+          output.value = '0';
+          operations.forEach(el => {
+            el.classList.remove('buttons__item_active-orange');
+            el.classList.remove('buttons__item_active-grey');
+          });
+        }
       }
       
       if (item.getAttribute('data-action') === 'answer') {
         if (valueMemory !== null) {
           value2 = Number(output.value);
+          cleanMemory = false;
           accurateCalc(operationMemory, valueMemory, value2, output);
-          // if (operationMemory === '+') {
-          //   // output.value = parseFloat(valueMemory + value2);
-          // }
-          // if (operationMemory === '-') {
-          //   output.value = parseFloat(valueMemory - value2);
-          // }
-          // if (operationMemory === '/') {
-          //   output.value = parseFloat(valueMemory / value2);
-          // }
-          // if (operationMemory === '*') {
-          //   // output.value = parseFloat(valueMemory * value2);
-          // }
-          
+          if (operationMemory === 'pow') {
+            output.value = Math.pow(valueMemory, value2);
+          }
         }
       }
     }
