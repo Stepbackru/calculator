@@ -44,6 +44,7 @@ const logic = () => {
         newValue = false;
       }
 
+      cleanMemory = false;
       output.value = decimalMemory;
     }
 
@@ -82,9 +83,7 @@ const logic = () => {
 
     if (item.hasAttribute('data-action')) {
       if (item.getAttribute('data-action') === 'partClear') {
-        if (valueMemory !== null) {
-          output.value = '0';
-        }
+        output.value = '0';
         buttonAc.innerText = 'AC';
         buttonAc.setAttribute('data-action', 'clear');
         cleanMemory = true;
