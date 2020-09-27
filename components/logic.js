@@ -76,7 +76,8 @@ const logic = () => {
     }
 
     if (operationMemory === 'sqrt') {
-      output.value = Math.sqrt(valueMemory).toFixed(9);
+      output.value = parseFloat( Math.sqrt(valueMemory));
+      cleanMemory = false;
     }
 
     if (item.hasAttribute('data-action')) {
