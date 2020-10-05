@@ -164,13 +164,13 @@ const template = [
         el: 'button',
         classNames: 'buttons__item',
         text: '.',
-        dataAttr: [['number', '.']]
+        dataAttr: [['decimal', '.']]
       },
       {
         el: 'button',
         classNames: 'buttons__item buttons__item-orange',
         text: '=',
-        dataAttr: [['action', 'answer']]
+        dataAttr: [['operation', '=']]
       }
     ],
     parent: 'buttons'

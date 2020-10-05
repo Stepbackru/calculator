@@ -74,6 +74,11 @@ const logic = () => {
         newValue = true;
       }
       operationMemory = item.getAttribute('data-operation');
+
+      if (!operationMemory) {
+        value2 = Number(output.value);
+        accurateCalc(operationMemory, valueMemory, value2, output);
+      }
     }
 
     if (operationMemory === 'sqrt') {
