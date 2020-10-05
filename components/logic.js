@@ -5,6 +5,8 @@ let CleanMemory = false;
 let NegativeNumber = false;
 
 const logic = () => {
+  const output = document.querySelector('.display__input');
+  
   document.querySelector('.wrapper').addEventListener('click', (e) => {
     const item = e.target;
 
@@ -34,6 +36,10 @@ const logic = () => {
       if (item.getAttribute('data-action') === '+/-') {
         negative();
       }
+    }
+
+    if (output.value === 'NaN') {
+      output.value = 'Error';
     }
 
   });
