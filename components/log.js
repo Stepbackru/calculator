@@ -2,6 +2,7 @@ let ValueMemory = null;
 let NewValue = false;
 let OperationMemory = ''
 let CleanMemory = false;
+let NegativeNumber = false;
 
 const logic = () => {
   document.querySelector('.wrapper').addEventListener('click', (e) => {
@@ -30,6 +31,9 @@ const logic = () => {
       if (item.getAttribute('data-action') === 'clear') {
         fullClear();
       }
+      if (item.getAttribute('data-action') === '+/-') {
+        negative();
+      }
     }
 
   });
@@ -51,6 +55,11 @@ const numberInput = (item) => {
 
       buttonAc.setAttribute('data-action', 'partClear');
       buttonAc.innerText = 'C';
+
+      if (NegativeNumber) {
+        output.value = item.getAttribute('data-number') * (-1);
+        NegativeNumber = false;
+      }
     } else {
       if (output.value === '0') {
         output.value = item.getAttribute('data-number');
@@ -59,7 +68,12 @@ const numberInput = (item) => {
         buttonAc.innerText = 'C';
         CleanMemory = false;
       } else {
-        output.value += item.getAttribute('data-number');
+        if (!NegativeNumber) {
+          output.value += item.getAttribute('data-number');
+        } else {
+          output.value = item.getAttribute('data-number') * (-1);
+          NegativeNumber = false;
+        }
       }
     }
   }
@@ -83,26 +97,27 @@ const operation = (item) => {
   } else if (orange && item.getAttribute('data-operation') !== '=') {
     item.classList.add('buttons__item_active-orange');
   }
-
   if (NewValue && OperationMemory !== '=') {
     output.value = ValueMemory;
   } else {
     NewValue = true;
     if (OperationMemory === '+') {
-      ValueMemory = Math.round((Number(ValueMemory) + Number(value2)) * 100) / 100
-      // Math.round((ValueMemory += Number(value2)) * 100) / 100;
+      ValueMemory = Math.round((Number(ValueMemory) + Number(value2)) * 100) / 100;
     } else if (OperationMemory === '-') {
-      ValueMemory = Math.round((Number(ValueMemory) - Number(value2)) * 100) / 100
-      // Math.round((ValueMemory -= Number(value2)) * 100) / 100;
+      ValueMemory = Math.round((Number(ValueMemory) - Number(value2)) * 100) / 100;
     } else if (OperationMemory === '*') {
-      ValueMemory = Math.round((Number(ValueMemory) * Number(value2)) * 100) / 100
-      // Math.round((ValueMemory *= Number(value2)) * 100) / 100;
+      ValueMemory = Math.round((Number(ValueMemory) * Number(value2)) * 100) / 100;
     } else if (OperationMemory === '/') {
-      ValueMemory = Math.round((Number(ValueMemory) / Number(value2)) * 100) / 100
-      // Math.round((ValueMemory /= Number(value2)) * 100) / 100;
+      ValueMemory = Math.round((Number(ValueMemory) / Number(value2)) * 100) / 100;
+    } else if (OperationMemory === 'sqrt' || item.getAttribute('data-operation') === 'sqrt') {
+      if (ValueMemory === null) {
+        NewValue = false;
+        ValueMemory = parseFloat(Math.sqrt(Number(output.value)));
+      }
+    } else if (OperationMemory === 'pow') {
+      ValueMemory = Math.pow(ValueMemory, value2);
     } else {
       ValueMemory = Number(value2);
-      // здесь подумать над 0.1 + 0.2 где-то надо добавить math.round
     }
     output.value = ValueMemory;
     OperationMemory = item.getAttribute('data-operation');
@@ -138,22 +153,27 @@ const partClear = () => {
 
 const fullClear = () => {
   const output = document.querySelector('.display__input');
+  const operations = [...document.querySelectorAll('.operation')];
 
   ValueMemory = null;
   NewValue = true;
   OperationMemory = '';
   output.value = '0';
+  
+  operations.forEach(el => {
+    el.classList.remove('buttons__item_active-orange');
+    el.classList.remove('buttons__item_active-grey');
+  });
 }
 
-const accurateCalc = (operation, val1, val2, output) => {
-  let n = {
-          '+': val1 + val2,
-          '-': val1 - val2,
-          '/': val1 / val2,
-          '*': val1 * val2
-      }[operation];        
-
-  return output.value = Math.round(n * 100) / 100;
-};
+const negative = () => {
+  const output = document.querySelector('.display__input');
+  if (output.value !== '0' && !NewValue) {
+    output.value = Number(output.value) * (-1);
+  } else {
+    NegativeNumber = true;
+    output.value = '-0';
+  }
+}
 
 export default logic;
