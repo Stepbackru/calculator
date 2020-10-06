@@ -108,17 +108,21 @@ const operation = (item) => {
   } else {
     NewValue = true;
     if (OperationMemory === '+') {
-      ValueMemory = Math.round((Number(ValueMemory) + Number(value2)) * 100) / 100;
+      ValueMemory = Math.round((Number(ValueMemory) + Number(value2)) * 10000) / 10000;
     } else if (OperationMemory === '-') {
-      ValueMemory = Math.round((Number(ValueMemory) - Number(value2)) * 100) / 100;
+      ValueMemory = Math.round((Number(ValueMemory) - Number(value2)) * 10000) / 10000;
     } else if (OperationMemory === '*') {
-      ValueMemory = Math.round((Number(ValueMemory) * Number(value2)) * 100) / 100;
+      ValueMemory = Math.round((Number(ValueMemory) * Number(value2)) * 10000) / 10000;
     } else if (OperationMemory === '/') {
-      ValueMemory = Math.round((Number(ValueMemory) / Number(value2)) * 100) / 100;
+      ValueMemory = Math.round((Number(ValueMemory) / Number(value2)) * 10000) / 10000;
     } else if (OperationMemory === 'sqrt' || item.getAttribute('data-operation') === 'sqrt') {
       if (ValueMemory === null) {
         NewValue = false;
-        ValueMemory = parseFloat(Math.sqrt(Number(output.value)));
+        if (output.value.length === 13) {
+          ValueMemory = Math.round(Math.sqrt(Number(output.value)) * 10**3) / 10**3;
+        } else {
+          ValueMemory = Math.round(Math.sqrt(Number(output.value)) * 10**6) / 10**6;
+        }
       }
     } else if (OperationMemory === 'pow') {
       ValueMemory = Math.pow(ValueMemory, value2);
