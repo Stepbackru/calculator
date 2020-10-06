@@ -118,14 +118,18 @@ const operation = (item) => {
     } else if (OperationMemory === 'sqrt' || item.getAttribute('data-operation') === 'sqrt') {
       if (ValueMemory === null) {
         NewValue = false;
-        if (output.value.length === 13) {
+        if (output.value.length >= 13) {
           ValueMemory = Math.round(Math.sqrt(Number(output.value)) * 10**3) / 10**3;
         } else {
           ValueMemory = Math.round(Math.sqrt(Number(output.value)) * 10**6) / 10**6;
         }
       }
     } else if (OperationMemory === 'pow') {
-      ValueMemory = Math.pow(ValueMemory, value2);
+      if (output.value.length >= 13) {
+        ValueMemory = Math.round(Math.pow(ValueMemory, value2) * 10**3) / 10**3;
+      } else {
+        ValueMemory = Math.round(Math.pow(ValueMemory, value2) * 10**6) / 10**6;
+      }
     } else {
       ValueMemory = Number(value2);
     }
