@@ -1,20 +1,16 @@
-// {String} el
-// {String} classNames
-// {String} text
-// {HTMLElement} child
-// {HTMLElement} parent
-// {...array} dataAttr
+// {Object} args
 
 const render = (args) => {
   let element = null;
-  let kid = null;
 
+  // Create Element
   try {
     element = document.createElement(args.el);
   } catch {
     throw new Error('Unable to create HTMLElement!');
   }
 
+  // Add classNames to element
   if (args.classNames) {
     element.classList.add(...args.classNames.split(' '));
   }
@@ -23,44 +19,19 @@ const render = (args) => {
     element.innerText = `${args.text}`;
   }
 
-  if (args.child !== null && args.child !== undefined) {
-    args.child.forEach(el => {
-      kid = document.createElement(el.el);
-
-      if (el.classNames) {
-        kid.classList.add(...el.classNames.split(' '));
-      }
-
-      if (el.text !== undefined) {
-        kid.innerText = `${el.text}`;
-      }
-
-      if (el.dataAttr !== undefined) {
-        el.dataAttr.forEach(([attrName, attrValue]) => {
-          if (attrValue === '') {
-            kid.setAttribute(attrName, '');
-          }
-    
-          if (attrName.match(/value|id|placeholder|type/)) {
-            kid.setAttribute(attrName, attrValue);
-          } else if (attrValue !== '') {
-            kid.dataset[attrName] = attrValue;
-          }
-        })
-      }
-
-      element.appendChild(kid);
-    })
+  // Childs of element
+  if (args.child && Array.isArray(args.child)) {
+    args.child.forEach(child => element.appendChild(render(child)));
   }
 
+  // Parent of element (for first element)
   if (args.parent) {
     if (args.parent === 'body') {
       document.body.appendChild(element);
-    } else {
-      document.querySelector(`.${args.parent}`).appendChild(element);
     }
   }
 
+  // data-attributes of element
   if (args.dataAttr !== undefined) {
     args.dataAttr.forEach(([attrName, attrValue]) => {
       if (attrValue === '') {
